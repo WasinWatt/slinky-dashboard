@@ -1,9 +1,10 @@
+import { Flex, Text } from '@chakra-ui/react'
 import './globals.css'
-// import { Prompt } from 'next/font/google'
+// import { Inter } from 'next/font/google'
 import { Providers } from './providers'
 import Script from 'next/script'
 
-// const prompt = Prompt({ subsets: ['thai'], weight: ['400', '600', '700'] })
+// const inter = Inter({ weight: ['400', '600', '700'] })
 
 export const metadata = {
   title: 'Slinky Oracle Dashboard',
@@ -35,9 +36,44 @@ export default function RootLayout({
       />
       <body>
         <Providers>
-          <div className='max-w-7xl mx-auto w-full min-h-screen relative'>
-            <div className='py-10 px-2'>{children}</div>
-          </div>
+          <Flex
+            className='flex-col mx-auto min-h-screen relative items-center justify-between'
+            background='default-background'
+          >
+            <div
+              style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                backgroundImage:
+                  'radial-gradient(circle at center, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 0.6) 100%), url("/bg-image.jpg")',
+                backgroundSize: 'cover cover',
+                opacity: 0.075,
+                zIndex: 0,
+              }}
+            />
+            <div />
+            <div
+              className='max-w-7xl py-10 px-2 w-full justify-between'
+              style={{ position: 'relative', zIndex: 1 }}
+            >
+              {children}
+            </div>
+            <div className='lg-p-8 p-4 w-full'>
+              <Flex
+                border='1px solid'
+                borderColor='gray.800'
+                className='px-6 py-4 rounded-lg max-w-7xl bg-gradient-to-r from-[#172132] to-[#03091E] justify-between'
+              >
+                <Text color='gray.400' className='font-mono text-sm'>
+                  Built by Alles
+                </Text>
+                <Text color='gray.400' className='font-mono text-sm'>
+                  ✨💻
+                </Text>
+              </Flex>
+            </div>
+          </Flex>
         </Providers>
       </body>
     </html>

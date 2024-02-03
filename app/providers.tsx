@@ -9,11 +9,17 @@ import { getApps, initializeApp } from 'firebase/app'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 const colors = {
-  brand: {
-    900: '#1a365d',
-    800: '#153e75',
-    700: '#2a69ac',
+  'default-background': '#020617',
+  gray: {
+    900: '#0A101E',
+    800: '#1E2535',
+    700: '#334155',
+    600: '#707E94',
+    500: '#8A99AE',
+    400: '#B7C1CD',
+    100: '#F8FAFC',
   },
+  sallmon: '#F7931A',
 }
 
 const firebaseConfig = {

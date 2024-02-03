@@ -10,7 +10,7 @@ export default function PairInfoCardGroup({
   isLoading: boolean
 }) {
   return (
-    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, 200px)'>
+    <SimpleGrid spacing={6} columns={pairs.length >= 4 ? 4 : pairs.length}>
       {pairs.map((pair, index) => (
         <PairInfoCard pair={pair} key={index} />
       ))}

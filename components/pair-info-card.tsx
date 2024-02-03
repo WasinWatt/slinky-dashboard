@@ -1,11 +1,12 @@
 'use client'
 import {
   Card,
-  CardHeader,
+  Flex,
   CardBody,
   Box,
   SkeletonCircle,
   SkeletonText,
+  Text,
 } from '@chakra-ui/react'
 
 import { useEffect, useState } from 'react'
@@ -72,9 +73,8 @@ export default function PairInfoCard({
       width={200}
       height={180}
       padding='6'
-      bg='orange.100'
-      border='2px'
-      borderColor={'black'}
+      border='1px solid'
+      borderColor='gray.700'
       rounded={'md'}
     >
       <div className='flex justify-start'>
@@ -89,37 +89,29 @@ export default function PairInfoCard({
     </Box>
   ) : (
     <Card
-      width={200}
-      height={180}
-      className='mx-auto bg-orange-100'
-      variant='outline'
-      borderColor='black'
-      borderWidth={2}
+      className='mx-auto h-48 w-52 rounded-xl'
+      bg='gray.900'
+      border='1px solid'
+      borderColor='gray.700'
     >
-      <CardHeader
-        className='flex justify-start'
-        paddingLeft='14px'
-        paddingRight='12px'
-        paddingTop='10px'
-        paddingBottom='8px'
-        wordBreak={'break-word'}
-      >
-        <div className='text-xl font-semibold flex justify-end gap-x-2 items-center'>
-          <p>
-            {pairInfo?.base}/{pairInfo?.quote}
-          </p>
-        </div>
-      </CardHeader>
       <CardBody
-        padding='14px'
-        paddingTop='0px'
-        className='flex justify-between gap-x-1'
-        wordBreak={'break-word'}
+        p={3}
+        className='flex flex-col justify-between gap-x-1 break-words'
       >
-        <div>
-          <p className='text-lg'>{readablePrice}</p>
-          <p className='text-sm pt-3'>updated {updatedSince}</p>
-        </div>
+        <Flex className='flex-col gap-4'>
+          <SkeletonCircle size='8' />
+          <div>
+            <Text className='text-xl font-medium' color='gray.100'>
+              {pairInfo?.base}/{pairInfo?.quote}
+            </Text>
+            <Text className='text-lg font-mono' color='gray.400'>
+              ${readablePrice}
+            </Text>
+          </div>
+        </Flex>
+        <Text className='text-xs font-mono' color='gray.500'>
+          Updated {updatedSince}
+        </Text>
       </CardBody>
     </Card>
   )

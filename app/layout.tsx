@@ -59,11 +59,11 @@ export default function RootLayout({
             >
               {children}
             </div>
-            <div className='lg-p-8 p-4 w-full'>
+            <div className='lg-p-8 p-4 w-full flex justify-center'>
               <Flex
                 border='1px solid'
                 borderColor='gray.800'
-                className='px-6 py-4 rounded-lg max-w-7xl bg-gradient-to-r from-[#172132] to-[#03091E] justify-between'
+                className='w-full px-6 py-4 rounded-lg max-w-7xl bg-gradient-to-r from-[#172132] to-[#03091E] justify-between'
               >
                 <Text color='gray.400' className='font-mono text-sm'>
                   Built by Alles

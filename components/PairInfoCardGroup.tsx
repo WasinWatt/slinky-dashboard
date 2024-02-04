@@ -13,7 +13,15 @@ export default function PairInfoCardGroup({
 }) {
   console.log(pairs)
   return (
-    <SimpleGrid spacing={6} columns={pairs.length >= 4 ? 4 : pairs.length}>
+    <SimpleGrid
+      spacing={6}
+      columns={{
+        base: 1,
+        sm: 2,
+        md: 3,
+        lg: pairs.length > 4 ? 4 : pairs.length,
+      }}
+    >
       {pairs.map((pair) => (
         <PairInfoCard
           pair={pair}

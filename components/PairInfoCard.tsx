@@ -8,7 +8,7 @@ import {
   SkeletonText,
   Text,
 } from '@chakra-ui/react'
-
+import { Image } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { PairInfo } from '@/types/currency-pair'
 import dayjs from 'dayjs'
@@ -16,22 +16,24 @@ import utc from 'dayjs/plugin/utc'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { CurrencyPair, GetPriceResponse } from '@/types/slinky'
 import axios from '@/utils/axios'
+import { chainInfo } from '@/app/constants'
+import { assetLogo } from '@/app/constants'
 dayjs.extend(utc)
 dayjs.extend(relativeTime)
 
 export default function PairInfoCard({
   pair: { Base, Quote },
+  selectedNetwork,
 }: {
   pair: CurrencyPair
+  selectedNetwork: string
 }) {
   const [pairInfo, setPairInfo] = useState<PairInfo>()
   const [isLoading, setIsLoading] = useState(false)
   const computeReadablePrice = (price: string, decimals: string) => {
-    const insertPosition = price.length - parseInt(decimals)
-    price = price.slice(0, insertPosition) + '.' + price.slice(insertPosition)
-    // remove trailing zeros after decimal point
-    price = price.replace(/0+$/, '')
-    return price
+    return parseFloat(
+      (Number(price) / Math.pow(10, Number(decimals))).toFixed(2)
+    )
   }
 
   const readablePrice = pairInfo
@@ -47,7 +49,7 @@ export default function PairInfoCard({
       const {
         data: { price: rawPrice, decimals },
       }: { data: GetPriceResponse } = await axios.get(
-        `https://lcd.mahalo-1.initia.xyz/slinky/oracle/v1/get_price?currency_pair_id=${Base}/${Quote}`
+        `${chainInfo[selectedNetwork].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${Base}/${Quote}`
       )
 
       setPairInfo({
@@ -59,7 +61,7 @@ export default function PairInfoCard({
       })
     } catch (error) {
       console.log(error)
-      alert('Having trouble fetching data, please try again later.')
+      // alert('Having trouble fetching data, please try again later.')
     }
     setIsLoading(false)
   }
@@ -99,7 +101,17 @@ export default function PairInfoCard({
         className='flex flex-col justify-between gap-x-1 break-words'
       >
         <Flex className='flex-col gap-4'>
-          <SkeletonCircle size='8' />
+          {pairInfo && assetLogo[pairInfo.base] ? (
+            <Image
+              src={assetLogo[pairInfo.base]}
+              width={8}
+              height={8}
+              borderRadius='full'
+              alt={`${pairInfo?.base} logo`}
+            />
+          ) : (
+            <SkeletonCircle size='8' />
+          )}
           <div>
             <Text className='text-xl font-medium' color='gray.100'>
               {pairInfo?.base}/{pairInfo?.quote}

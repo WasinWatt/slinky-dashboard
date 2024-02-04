@@ -31,9 +31,7 @@ export default function PairInfoCard({
   const [pairInfo, setPairInfo] = useState<PairInfo>()
   const [isLoading, setIsLoading] = useState(false)
   const computeReadablePrice = (price: string, decimals: string) => {
-    return parseFloat(
-      (Number(price) / Math.pow(10, Number(decimals))).toFixed(2)
-    )
+    return (Number(price) / Math.pow(10, Number(decimals))).toFixed(2)
   }
 
   const readablePrice = pairInfo

@@ -31,7 +31,16 @@ export default function PairInfoCard({
   const [pairInfo, setPairInfo] = useState<PairInfo>()
   const [isLoading, setIsLoading] = useState(false)
   const computeReadablePrice = (price: string, decimals: string) => {
-    return (Number(price) / Math.pow(10, Number(decimals))).toFixed(2)
+    const insertPosition = price.length - parseInt(decimals)
+    price = price.slice(0, insertPosition) + '.' + price.slice(insertPosition)
+    // Remove trailing zeros after decimal point
+    price = price.replace(/\.?0+$/, '')
+    // Ensure the total length does not exceed 8 digits
+    const [integerPart, decimalPart] = price.split('.')
+    if (integerPart.length >= 8) {
+      return integerPart.slice(0, 8)
+    }
+    return integerPart + '.' + decimalPart.slice(0, 8 - integerPart.length)
   }
 
   const readablePrice = pairInfo

@@ -8,12 +8,12 @@ type ChainInfoType = {
 
 export const chainInfo: ChainInfoType = {
   'mahalo-1': {
-    prettyName: 'mahalo-1 (Initia)',
+    prettyName: 'Initia (mahalo-1)',
     explorer: 'https://scan.testnet.initia.xyz',
     lcd: 'https://lcd.mahalo-1.initia.xyz',
   },
   artio: {
-    prettyName: 'Artio (Berachain)',
+    prettyName: 'Berachain (artio)',
     explorer: 'https://artio.beratrail.io',
     lcd: 'https://berachain-testnet-api.polkachu.com',
   },

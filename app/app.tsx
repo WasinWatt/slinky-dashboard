@@ -1,46 +1,38 @@
 'use client'
-
-import { ChevronDownIcon, RepeatIcon } from '@chakra-ui/icons'
-import {
-  Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
-} from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { AllPairsResponse, CurrencyPair } from '@/types/slinky'
 import axios from '@/utils/axios'
-import PairInfoCardGroup from '@/components/pair-info-card-group'
+import PairInfoCardGroup from '@/components/PairInfoCardGroup'
+import { chainInfo } from './constants' // Import chainInfo from constants
+import { NetworkMenu } from '@/components/NetworkMenu'
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false)
-  const [pairs, setPairs] = useState<CurrencyPair[]>(() => [])
-
-  const getAllPairs = async () => {
-    setIsLoading(true)
-    try {
-      const {
-        data: { currency_pairs: rawCurrencyPairs },
-      }: {
-        data: AllPairsResponse
-      } = await axios.get(
-        'https://lcd.mahalo-1.initia.xyz/slinky/oracle/v1/get_all_tickers'
-      )
-
-      setPairs(rawCurrencyPairs)
-    } catch (error) {
-      console.log(error)
-      alert('Having trouble fetching data, please try again later.')
-    }
-    setIsLoading(false)
-  }
+  const [pairs, setPairs] = useState<CurrencyPair[]>([])
+  const [selectedNetwork, setSelectedNetwork] = useState<string>(
+    Object.keys(chainInfo)[0]
+  )
 
   useEffect(() => {
-    getAllPairs()
-  }, [])
+    const fetchPairs = async () => {
+      setIsLoading(true)
+      try {
+        const lcdUrl = chainInfo[selectedNetwork].lcd
+        const {
+          data: { currency_pairs: rawCurrencyPairs },
+        }: {
+          data: AllPairsResponse
+        } = await axios.get(`${lcdUrl}/slinky/oracle/v1/get_all_tickers`)
+        setPairs(rawCurrencyPairs)
+      } catch (error) {
+        console.log(error)
+      }
+      setIsLoading(false)
+    }
+
+    fetchPairs()
+  }, [selectedNetwork])
 
   return (
     <Flex className='flex-col items-center justify-center'>
@@ -52,48 +44,17 @@ export default function App() {
           </Text>
         </div>
         <Flex className='w-full gap-4 justify-between items-center'>
-          {/* TODO move to new components and add logic */}
-          <Menu>
-            <MenuButton
-              as={Button}
-              size='md'
-              minW={200}
-              border='1px solid'
-              borderColor='gray.700'
-              className='bg-slate-900 hover:bg-slate-800 text-left items-center w-full'
-              rightIcon={<ChevronDownIcon />}
-            >
-              <Text className='font-mono text-sm font-normal'>
-                All Networks
-              </Text>
-            </MenuButton>
-            <MenuList
-              border='1px solid'
-              borderColor='gray.700'
-              className='font-mono text-sm font-normal bg-slate-900'
-            >
-              <MenuItem className='hover:bg-slate-800'>All Networks</MenuItem>
-              <MenuItem className='hover:bg-slate-800'>
-                mahalo-1 (initia)
-              </MenuItem>
-              <MenuItem className='hover:bg-slate-800'>
-                artio (berachain)
-              </MenuItem>
-            </MenuList>
-          </Menu>
-          <Button
-            leftIcon={<RepeatIcon />}
-            variant={'solid'}
-            size='md'
-            className='bg-slate-800 hover:bg-slate-700 hover:scale-105 min-w-min'
-            onClick={() => getAllPairs()}
-          >
-            <Text className='font-mono text-sm font-normal'>Refresh</Text>
-          </Button>
+          <NetworkMenu
+            selectedNetwork={selectedNetwork}
+            onSelect={setSelectedNetwork}
+          />
         </Flex>
       </Flex>
-      {/* render currencyPairs */}
-      <PairInfoCardGroup pairs={pairs} isLoading={isLoading} />
+      <PairInfoCardGroup
+        pairs={pairs}
+        isLoading={isLoading}
+        selectedNetwork={selectedNetwork}
+      />
     </Flex>
   )
 }

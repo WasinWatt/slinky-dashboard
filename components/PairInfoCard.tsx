@@ -61,7 +61,7 @@ export default function PairInfoCard({
       })
     } catch (error) {
       console.log(error)
-      // alert('Having trouble fetching data, please try again later.')
+      alert('Having trouble fetching data, please try again later.')
     }
     setIsLoading(false)
   }

@@ -28,7 +28,7 @@ export const NetworkMenu: React.FC<NetworkMenuProps> = ({
       className='bg-slate-900 hover:bg-slate-800 text-left items-center w-full'
       rightIcon={<ChevronDownIcon />}
     >
-      <Text className='font-mono text-sm font-normal'>
+      <Text className='font-mono text-sm font-normal text-gray-100'>
         {chainInfo[selectedNetwork].prettyName}
       </Text>
     </MenuButton>
@@ -40,7 +40,7 @@ export const NetworkMenu: React.FC<NetworkMenuProps> = ({
       {Object.keys(chainInfo).map((network) => (
         <MenuItem
           key={network}
-          className='hover:bg-slate-800'
+          className='hover:bg-slate-800 text-gray-100'
           onClick={() => onSelect(network)}
         >
           {chainInfo[network].prettyName}

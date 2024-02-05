@@ -25,7 +25,7 @@ export const NetworkMenu: React.FC<NetworkMenuProps> = ({
       minW={200}
       border='1px solid'
       borderColor='gray.700'
-      className='bg-slate-900 hover:bg-slate-800 text-left items-center w-full'
+      className='bg-slate-900 hover:bg-slate-800 text-left items-center w-full text-gray-100'
       rightIcon={<ChevronDownIcon />}
     >
       <Text className='font-mono text-sm font-normal text-gray-100'>

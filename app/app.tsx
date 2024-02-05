@@ -38,9 +38,9 @@ export default function App() {
     <Flex className='flex-col items-center justify-center'>
       <Flex className='flex-col gap-6 items-center  mb-8'>
         <div className='text-center'>
-          <h1 className='font-light text-4xl mb-1 text-gray-100'>
+          <Text className='font-light text-4xl mb-1' color='gray.100'>
             Slinky Oracle Dashboard
-          </h1>
+          </Text>
           <Text color='gray.600' className='text-sm font-mono pt-1'>
             Current Prices and Last Updated Insights from Slinky Oracle here
           </Text>

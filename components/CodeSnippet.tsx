@@ -47,8 +47,7 @@ const CodeSnippet = ({
       {
         name: 'CLI',
         mode: 'sh',
-        snippet: `# get all supported pairs
-curl -X GET "${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}"`,
+        snippet: `curl -X GET "${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}"`,
       },
       {
         name: 'Axios',

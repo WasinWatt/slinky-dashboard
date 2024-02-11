@@ -6,7 +6,7 @@ import axios from '@/utils/axios'
 import PairInfoCardGroup from '@/components/PairInfoCardGroup'
 import { chainInfo } from './constants' // Import chainInfo from constants
 import { NetworkMenu } from '@/components/NetworkMenu'
-import { CodeSnippet } from '@/components/CodeSnippet'
+import CodeSnippet from '@/components/CodeSnippet'
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false)

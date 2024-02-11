@@ -1,3 +1,4 @@
+'use client'
 import {
   Modal,
   ModalOverlay,
@@ -16,6 +17,8 @@ import {
 import AceEditor from 'react-ace'
 import { chainInfo } from '@/app/constants'
 import { CustomTab } from './CustomTab'
+import { CopyButton } from './copy/CopyButton'
+import { CustomIcon } from './icon/CustomIcon'
 
 import 'ace-builds/src-noconflict/ace'
 import 'ace-builds/src-noconflict/mode-sh'
@@ -24,10 +27,8 @@ import 'ace-builds/src-noconflict/mode-javascript'
 import 'ace-builds/src-noconflict/theme-monokai'
 import 'ace-builds/src-noconflict/theme-one_dark'
 import 'ace-builds/src-noconflict/theme-pastel_on_dark'
-import { CopyButton } from './copy/CopyButton'
-import { CustomIcon } from './icon/CustomIcon'
 
-export const CodeSnippet = ({ network }: { network: string }) => {
+const CodeSnippet = ({ network }: { network: string }) => {
   const { isOpen, onClose, onOpen } = useDisclosure()
 
   const codeSnippets: Record<
@@ -91,6 +92,8 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
                       borderRadius='8px'
                       position='relative'
                     >
+                      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                      {/* @ts-ignore */}
                       <AceEditor
                         readOnly
                         mode={item.mode}
@@ -122,3 +125,5 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
     </>
   )
 }
+
+export default CodeSnippet

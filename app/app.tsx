@@ -6,7 +6,6 @@ import axios from '@/utils/axios'
 import PairInfoCardGroup from '@/components/PairInfoCardGroup'
 import { chainInfo } from './constants' // Import chainInfo from constants
 import { NetworkMenu } from '@/components/NetworkMenu'
-import CodeSnippet from '@/components/CodeSnippet'
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false)
@@ -62,7 +61,6 @@ export default function App() {
         className='mt-10 justify-center gap-8 font-extralight underline underline-offset-1 text-white'
         style={{ textDecorationThickness: 0.5 }}
       >
-        <CodeSnippet network={selectedNetwork} />
         <p className='cursor-pointer'>How to query ?</p>
       </Flex>
     </Flex>

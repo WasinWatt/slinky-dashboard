@@ -28,7 +28,15 @@ import 'ace-builds/src-noconflict/theme-monokai'
 import 'ace-builds/src-noconflict/theme-one_dark'
 import 'ace-builds/src-noconflict/theme-pastel_on_dark'
 
-const CodeSnippet = ({ network }: { network: string }) => {
+const CodeSnippet = ({
+  network,
+  base,
+  quote,
+}: {
+  network: string
+  base: string
+  quote: string
+}) => {
   const { isOpen, onClose, onOpen } = useDisclosure()
 
   const codeSnippets: Record<
@@ -40,21 +48,14 @@ const CodeSnippet = ({ network }: { network: string }) => {
         name: 'CLI',
         mode: 'sh',
         snippet: `# get all supported pairs
-curl -X GET "${chainInfo[network].lcd}/slinky/oracle/v1/get_all_tickers"
-# get a specific price of base/quote pair
-curl -X GET "${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=<base>/<quote>"`,
+curl -X GET "${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}"`,
       },
       {
         name: 'Axios',
         mode: 'javascript',
         snippet: `const axios = require('axios');\n
 const lcdURL = "${chainInfo[network].lcd}"
-
-// get all supported pairs
-const { data: { currency_pairs: allPairs }} = await axios.get("${chainInfo[network].lcd}/slinky/oracle/v1/get_all_tickers")
-
-// get a specific price of base/quote pair
-const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=<base>/<quote>")
+const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}")
 `,
       },
     ],
@@ -62,9 +63,13 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
 
   return (
     <>
-      <p className='cursor-pointer' onClick={onOpen}>
-        Code Snippet
-      </p>
+      <CustomIcon
+        name='code'
+        boxSize={6}
+        color='gray.600'
+        className='cursor-pointer'
+        onClick={onOpen}
+      />
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered size='4xl'>
         <ModalOverlay />

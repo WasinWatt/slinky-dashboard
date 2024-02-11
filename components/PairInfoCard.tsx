@@ -18,6 +18,8 @@ import { CurrencyPair, GetPriceResponse } from '@/types/slinky'
 import axios from '@/utils/axios'
 import { chainInfo } from '@/app/constants'
 import { assetLogo } from '@/app/constants'
+import { CustomIcon } from './icon/CustomIcon'
+import CodeSnippet from './CodeSnippet'
 dayjs.extend(utc)
 dayjs.extend(relativeTime)
 
@@ -74,6 +76,7 @@ export default function PairInfoCard({
         price: rawPrice.price,
         decimals: decimals,
         blockTimestamp: rawPrice.block_timestamp,
+        blockHeight: rawPrice.block_height,
       })
     } catch (error) {
       console.log(error)
@@ -123,13 +126,20 @@ export default function PairInfoCard({
       >
         <Flex className='flex-col gap-4'>
           {pairInfo && assetLogo[pairInfo.base] ? (
-            <Image
-              src={assetLogo[pairInfo.base]}
-              width={8}
-              height={8}
-              borderRadius='full'
-              alt={`${pairInfo?.base} logo`}
-            />
+            <div className='flex justify-between'>
+              <Image
+                src={assetLogo[pairInfo.base]}
+                width={8}
+                height={8}
+                borderRadius='full'
+                alt={`${pairInfo?.base} logo`}
+              />
+              <CodeSnippet
+                network={selectedNetwork}
+                base={pairInfo.base}
+                quote={pairInfo.quote}
+              />
+            </div>
           ) : (
             <SkeletonCircle size='8' />
           )}
@@ -142,9 +152,14 @@ export default function PairInfoCard({
             </Text>
           </div>
         </Flex>
-        <Text className='text-xs font-mono' color='gray.500'>
-          Updated {updatedSince}
-        </Text>
+        <div>
+          <Text className='text-xs font-mono' color='gray.500'>
+            Updated {updatedSince}
+          </Text>
+          <Text className='text-xs font-mono' color='gray.500'>
+            at height {pairInfo?.blockHeight}
+          </Text>
+        </div>
       </CardBody>
     </Card>
   )

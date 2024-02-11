@@ -4,4 +4,5 @@ export interface PairInfo {
   price: string
   decimals: string
   blockTimestamp: string
+  blockHeight: string
 }

@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://koodhuay.space
+Host: https://slinky-dashboard.vercel.app
 
 # Sitemaps
-Sitemap: https://koodhuay.space/sitemap.xml
+Sitemap: https://slinky-dashboard.vercel.app/sitemap.xml

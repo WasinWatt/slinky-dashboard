@@ -2,7 +2,6 @@ import { Flex, Text } from '@chakra-ui/react'
 import './globals.css'
 // import { Inter } from 'next/font/google'
 import { Providers } from './providers'
-import Script from 'next/script'
 
 // const inter = Inter({ weight: ['400', '600', '700'] })
 
@@ -12,10 +11,10 @@ export const metadata = {
   openGraph: {
     title: 'Slinky Oracle Dashboard',
     description: 'Current prices & last updated insights from Slinky Oracle',
-    url: 'https://domain.app',
+    url: 'https://slinky-dashboard.vercel.app',
     images: [
       {
-        url: 'https://domain.app/og.png',
+        url: 'https://slinky-dashboard.vercel.app/og.png',
       },
     ],
     type: 'website',
@@ -29,11 +28,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <Script
-        async
-        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900015899066295'
-        crossOrigin='anonymous'
-      />
       <body>
         <Providers>
           <Flex

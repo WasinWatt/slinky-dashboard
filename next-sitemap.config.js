@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://koodhuay.space',
+  siteUrl: 'https://slinky-dashboard.vercel.app',
   generateRobotsTxt: true,
 }

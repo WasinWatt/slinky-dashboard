@@ -1,9 +1,7 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, Image } from '@chakra-ui/react'
 import './globals.css'
-// import { Inter } from 'next/font/google'
 import { Providers } from './providers'
-
-// const inter = Inter({ weight: ['400', '600', '700'] })
+import { CustomIcon } from '@/components/icon/CustomIcon'
 
 export const metadata = {
   title: 'Slinky Oracle Dashboard',
@@ -14,7 +12,7 @@ export const metadata = {
     url: 'https://slinky-dashboard.vercel.app',
     images: [
       {
-        url: 'https://slinky-dashboard.vercel.app/og.png',
+        url: 'https://assets.alleslabs.dev/slinky-dashboard/ogimage.jpg',
       },
     ],
     type: 'website',
@@ -28,6 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+        <link rel='icon' href='/favicon.ico' />
+      </head>
       <body>
         <Providers>
           <Flex className='flex-col mx-auto min-h-screen relative items-center justify-between bg-background-main'>
@@ -50,12 +51,42 @@ export default function RootLayout({
                 borderColor='gray.800'
                 className='w-full px-6 py-4 rounded-lg max-w-7xl bg-gradient-to-r from-[#172132] to-[#03091E] justify-between'
               >
-                <Text color='gray.400' className='font-mono text-sm'>
-                  Built by Alles
-                </Text>
-                <Text color='gray.400' className='font-mono text-sm'>
-                  ✨💻
-                </Text>
+                <div className='flex gap-1 items-center'>
+                  <Text color='gray.400' className='font-mono text-sm'>
+                    Built by
+                  </Text>
+                  <Image
+                    src='https://assets.alleslabs.dev/alles-brand/logo/full-gray.png'
+                    width={14}
+                    height='auto'
+                    objectFit='contain'
+                    alt='alles labs'
+                  />
+                </div>
+                <div className='flex items-center gap-1'>
+                  <a
+                    href='https://github.com/alleslabs/slinky-dashboard'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <CustomIcon
+                      name='github-solid'
+                      boxSize={5}
+                      className='text-gray-500 hover:scale-125 transition-all ease-in-out'
+                    />
+                  </a>
+                  <a
+                    href='https://twitter.com/alleslabs'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <CustomIcon
+                      name='twitter-solid'
+                      boxSize={5}
+                      className='text-gray-500 hover:scale-125 transition-all ease-in-out'
+                    />
+                  </a>
+                </div>
               </Flex>
             </div>
           </Flex>

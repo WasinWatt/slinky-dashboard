@@ -96,26 +96,19 @@ export default function PairInfoCard({
 
   return !pairInfo ? (
     <Box
-      width={200}
-      height={180}
+      className='mx-auto h-48 w-64 rounded-xl'
       padding='6'
       border='1px solid'
       borderColor='gray.700'
-      rounded={'md'}
     >
       <div className='flex justify-start'>
-        <SkeletonCircle size='6' />
-        <SkeletonCircle size='6' />
-        <SkeletonCircle size='6' />
-        <SkeletonCircle size='6' />
-        <SkeletonCircle size='6' />
         <SkeletonCircle size='6' />
       </div>
       <SkeletonText mt='4' noOfLines={3} spacing='4' skeletonHeight='2' />
     </Box>
   ) : (
     <Card
-      className='mx-auto h-48 w-52 rounded-xl'
+      className='mx-auto h-48 w-64 rounded-xl'
       bg='gray.900'
       border='1px solid'
       borderColor='gray.700'
@@ -153,12 +146,16 @@ export default function PairInfoCard({
           </div>
         </Flex>
         <div>
-          <Text className='text-xs font-mono' color='gray.500'>
+          <Text className='text-xs font-mono text-gray-500'>
             Updated {updatedSince}
           </Text>
-          <Text className='text-xs font-mono' color='gray.500'>
-            at height {pairInfo?.blockHeight}
-          </Text>
+          <div className='flex items-center gap-1'>
+            <Text className='text-xs font-mono text-gray-500'>at height</Text>
+            <CustomIcon name='block' boxSize={3} color='gray.600' mr={0} />
+            <Text className='text-xs font-mono text-gray-500'>
+              {pairInfo?.blockHeight}
+            </Text>
+          </div>
         </div>
       </CardBody>
     </Card>

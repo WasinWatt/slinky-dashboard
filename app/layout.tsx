@@ -35,25 +35,19 @@ export default function RootLayout({
             background='default-background'
           >
             <div
+              className='absolute w-full h-full z-0'
               style={{
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
                 backgroundImage:
                   'radial-gradient(circle at center, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 0.6) 100%), url("/bg-image.jpg")',
                 backgroundSize: 'cover cover',
                 opacity: 0.075,
-                zIndex: 0,
               }}
             />
             <div />
-            <div
-              className='max-w-7xl py-10 px-2 w-full justify-between'
-              style={{ position: 'relative', zIndex: 1 }}
-            >
+            <div className='max-w-7xl py-16 px-2 w-full justify-between z-10 relative'>
               {children}
             </div>
-            <div className='lg-p-8 p-4 w-full flex justify-center'>
+            <div className='lg-p-8 p-4 w-full flex justify-center mb-2 z-10'>
               <Flex
                 border='1px solid'
                 borderColor='gray.800'

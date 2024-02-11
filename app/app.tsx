@@ -13,6 +13,16 @@ export default function App() {
   const [selectedNetwork, setSelectedNetwork] = useState<string>(
     Object.keys(chainInfo)[0]
   )
+  const [countdown, setCountdown] = useState(10)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCountdown((prevCountdown) =>
+        prevCountdown === 1 ? 10 : prevCountdown - 1
+      )
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -32,6 +42,8 @@ export default function App() {
     }
 
     fetchPairs()
+
+    setCountdown(10)
   }, [selectedNetwork])
 
   return (
@@ -41,7 +53,7 @@ export default function App() {
           <Text className='font-light text-4xl mb-1' color='gray.100'>
             Slinky Oracle Dashboard
           </Text>
-          <Text color='gray.600' className='text-sm font-mono pt-1'>
+          <Text className='text-sm font-mono pt-1 text-gray-600'>
             Current Prices and Last Updated Insights from Slinky Oracle here
           </Text>
         </div>
@@ -51,18 +63,21 @@ export default function App() {
             onSelect={setSelectedNetwork}
           />
         </Flex>
+        <div className='flex items-center gap-2 px-2 py-1 rounded-md bg-gray-800 bg-opacity-50 w-48 justify-center'>
+          <span className='relative flex h-2 w-2'>
+            <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-500 opacity-75'></span>
+            <span className='relative inline-flex rounded-full h-2 w-2 bg-gray-400'></span>
+          </span>
+          <Text className='text-xs font-mono pt-1 text-gray-400 mb-1'>
+            Prices update in {countdown}s
+          </Text>
+        </div>
       </Flex>
       <PairInfoCardGroup
         pairs={pairs}
         isLoading={isLoading}
         selectedNetwork={selectedNetwork}
       />
-      <Flex
-        className='mt-10 justify-center gap-8 font-extralight underline underline-offset-1 text-white'
-        style={{ textDecorationThickness: 0.5 }}
-      >
-        <p className='cursor-pointer'>How to query ?</p>
-      </Flex>
     </Flex>
   )
 }

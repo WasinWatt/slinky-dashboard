@@ -82,11 +82,16 @@ export default function PairInfoCard({
     setIsLoading(false)
   }
 
+  // call getPrice every 10 seconds
   useEffect(() => {
     getPrice()
+    const interval = setInterval(() => {
+      getPrice()
+    }, 10000)
+    return () => clearInterval(interval)
   }, [])
 
-  return isLoading ? (
+  return !pairInfo ? (
     <Box
       width={200}
       height={180}

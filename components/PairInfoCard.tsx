@@ -33,6 +33,10 @@ export default function PairInfoCard({
   const computeReadablePrice = (price: string, decimals: string) => {
     const insertPosition = price.length - parseInt(decimals)
     price = price.slice(0, insertPosition) + '.' + price.slice(insertPosition)
+    // if price starts with ., add 0 before it
+    if (price.startsWith('.')) {
+      price = '0' + price
+    }
     // Remove trailing zeros after decimal point
     price = price.replace(/\.?0+$/, '')
     // Ensure the total length does not exceed 8 digits
@@ -40,6 +44,11 @@ export default function PairInfoCard({
     if (integerPart.length >= 8) {
       return integerPart.slice(0, 8)
     }
+
+    if (!decimalPart) {
+      return integerPart
+    }
+
     return integerPart + '.' + decimalPart.slice(0, 8 - integerPart.length)
   }
 

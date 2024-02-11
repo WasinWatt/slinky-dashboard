@@ -96,7 +96,7 @@ export default function PairInfoCard({
 
   return !pairInfo ? (
     <Box
-      className='mx-auto h-48 w-64 rounded-xl'
+      className='mx-auto h-48 w-52 lg:w-64 rounded-xl'
       padding='6'
       border='1px solid'
       borderColor='gray.700'
@@ -108,7 +108,7 @@ export default function PairInfoCard({
     </Box>
   ) : (
     <Card
-      className='mx-auto h-48 w-64 rounded-xl'
+      className='mx-auto h-48 w-52 lg:w-64 rounded-xl'
       bg='gray.900'
       border='1px solid'
       borderColor='gray.700'

@@ -13,6 +13,7 @@ import {
   TabPanel,
   Heading,
   Box,
+  Tooltip,
 } from '@chakra-ui/react'
 import AceEditor from 'react-ace'
 import { chainInfo } from '@/app/constants'
@@ -62,25 +63,27 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
 
   return (
     <>
-      <CustomIcon
-        name='code'
-        boxSize={6}
-        color='gray.600'
-        className='cursor-pointer'
-        onClick={onOpen}
-      />
+      <Tooltip label='Code Snippet' placement='top'>
+        <div
+          className='flex items-center w-8 h-8 justify-center cursor-pointer rounded-md hover:bg-gray-700 hover:bg-opacity-50 transition-all ease-in-out'
+          onClick={onOpen}
+        >
+          <CustomIcon name='code' boxSize={5} color='gray.600' />
+        </div>
+      </Tooltip>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered size='4xl'>
         <ModalOverlay />
         <ModalContent w='840px'>
-          <ModalHeader>
+          <ModalHeader display='flex' flexDirection='row'>
             <CustomIcon name='code' boxSize={6} color='gray.600' />
-            <Heading as='h5' variant='h5'>
-              Code Snippet
-            </Heading>
+            <div className='text-2xl text-gray-100'>Code Snippet</div>
           </ModalHeader>
-          <ModalCloseButton color='gray.600' />
-          <ModalBody px={4} maxH='640px' overflow='scroll'>
+          <ModalCloseButton
+            color='gray.600'
+            className='flex items-center w-8 h-8 justify-center cursor-pointer rounded-md hover:bg-gray-700 hover:bg-opacity-50 transition-all ease-in-out'
+          />
+          <ModalBody px={4} pt={0} maxH='480px' overflow='scroll'>
             <Tabs>
               <TabList borderBottom='1px solid' borderColor='gray.700'>
                 {codeSnippets.query.map((item) => (
@@ -95,6 +98,7 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
                       p={4}
                       borderRadius='8px'
                       position='relative'
+                      height='256px'
                     >
                       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                       {/* @ts-ignore */}
@@ -106,6 +110,7 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
                         style={{
                           width: '100%',
                           background: 'transparent',
+                          height: '256px',
                         }}
                         value={item.snippet}
                         setOptions={{
@@ -115,7 +120,7 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
                           wrap: true,
                         }}
                       />
-                      <Box position='absolute' top={4} right={4}>
+                      <Box position='absolute' bottom={4} right={4}>
                         <CopyButton value={item.snippet} />
                       </Box>
                     </Box>

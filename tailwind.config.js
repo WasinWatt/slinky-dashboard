@@ -30,6 +30,10 @@ module.exports = {
           800: '#1E2535',
           900: '#0A101E',
         },
+        background: {
+          main: '#020617',
+          overlay: 'rgba(2, 6, 23, 0.7)',
+        },
       },
     },
   },

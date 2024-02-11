@@ -57,7 +57,7 @@ export default function App() {
             Current Prices and Last Updated Insights from Slinky Oracle here
           </Text>
         </div>
-        <Flex className='w-full gap-4 justify-between items-center'>
+        <Flex className='w-full max-w-xs lg:max-w-lg gap-4 justify-between items-center'>
           <NetworkMenu
             selectedNetwork={selectedNetwork}
             onSelect={setSelectedNetwork}

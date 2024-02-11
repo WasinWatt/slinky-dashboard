@@ -14,7 +14,7 @@ export default function PairInfoCardGroup({
   console.log(pairs)
   return (
     <SimpleGrid
-      spacing={6}
+      spacing={{ base: 4, md: 6 }}
       columns={{
         base: 1,
         sm: 2,

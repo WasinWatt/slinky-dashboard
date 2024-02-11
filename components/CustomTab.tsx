@@ -25,18 +25,10 @@ export const CustomTab = ({
   return (
     <Button
       __css={styles.tab}
-      display='flex'
-      alignItems='center'
-      fontSize='14px'
-      fontWeight={700}
-      lineHeight='24px'
-      letterSpacing='0.4px'
-      variant='ghost-gray'
-      minW='fit-content'
-      mb={0}
+      className='font-mono font-semibold flex items-center text-sm mb-0 min-w-fit'
       sx={{
         '&[aria-selected=true]': {
-          color: 'primary.light',
+          color: 'primary.main',
         },
         '&[aria-selected=false]': {
           color: 'gray.500',

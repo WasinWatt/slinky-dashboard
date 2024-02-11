@@ -30,10 +30,7 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <Providers>
-          <Flex
-            className='flex-col mx-auto min-h-screen relative items-center justify-between'
-            background='default-background'
-          >
+          <Flex className='flex-col mx-auto min-h-screen relative items-center justify-between bg-background-main'>
             <div
               className='absolute w-full h-full z-0'
               style={{

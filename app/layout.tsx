@@ -65,7 +65,7 @@ export default function RootLayout({
                 </div>
                 <div className='flex items-center gap-1'>
                   <a
-                    href='https://github.com/alleslabs/slinky-dashboard'
+                    href='https://github.com/alleslabs'
                     target='_blank'
                     rel='noopener noreferrer'
                   >

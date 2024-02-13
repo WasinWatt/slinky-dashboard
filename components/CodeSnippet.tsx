@@ -46,9 +46,14 @@ const CodeSnippet = ({
   > = {
     query: [
       {
-        name: 'CLI',
+        name: 'CLI (cURL)',
         mode: 'sh',
         snippet: `curl -X GET "${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}"`,
+      },
+      {
+        name: 'CLI (client)',
+        mode: 'sh',
+        snippet: `initiad query oracle price ${base} ${quote} --node "${chainInfo[network].rpc}"`,
       },
       {
         name: 'Axios',

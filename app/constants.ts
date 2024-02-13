@@ -3,6 +3,7 @@ type ChainInfoType = {
     prettyName: string
     explorer: string
     lcd: string
+    rpc: string
   }
 }
 
@@ -11,11 +12,13 @@ export const chainInfo: ChainInfoType = {
     prettyName: 'Initia (mahalo-1)',
     explorer: 'https://scan.testnet.initia.xyz',
     lcd: 'https://lcd.mahalo-1.initia.xyz',
+    rpc: 'https://rpc.mahalo-1.initia.xyz:443',
   },
   artio: {
     prettyName: 'Berachain (artio)',
     explorer: 'https://artio.beratrail.io',
     lcd: 'https://berachain-testnet-api.polkachu.com',
+    rpc: 'https://berachain-testnet-rpc.polkachu.com',
   },
 }
 

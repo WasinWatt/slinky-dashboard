@@ -26,9 +26,11 @@ dayjs.extend(relativeTime)
 export default function PairInfoCard({
   pair: { Base, Quote },
   selectedNetwork,
+  toggleRefresh,
 }: {
   pair: CurrencyPair
   selectedNetwork: string
+  toggleRefresh: boolean
 }) {
   const [pairInfo, setPairInfo] = useState<PairInfo>()
   const [isLoading, setIsLoading] = useState(false)
@@ -85,14 +87,9 @@ export default function PairInfoCard({
     setIsLoading(false)
   }
 
-  // call getPrice every 10 seconds
   useEffect(() => {
     getPrice()
-    const interval = setInterval(() => {
-      getPrice()
-    }, 10000)
-    return () => clearInterval(interval)
-  }, [])
+  }, [toggleRefresh])
 
   return !pairInfo ? (
     <Box

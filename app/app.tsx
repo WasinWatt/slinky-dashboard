@@ -14,15 +14,22 @@ export default function App() {
     Object.keys(chainInfo)[0]
   )
   const [countdown, setCountdown] = useState(10)
+  const [toggleRefresh, setToggleRefresh] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCountdown((prevCountdown) =>
-        prevCountdown === 1 ? 10 : prevCountdown - 1
+        prevCountdown === 0 ? 10 : prevCountdown - 1
       )
     }, 1000)
     return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    if (countdown === 0) {
+      setToggleRefresh(!toggleRefresh)
+    }
+  }, [countdown])
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -69,13 +76,15 @@ export default function App() {
             <span className='relative inline-flex rounded-full h-2 w-2 bg-gray-400'></span>
           </span>
           <Text className='text-xs font-mono pt-1 text-gray-400 mb-1'>
-            Prices update in {countdown}s
+            {countdown === 0
+              ? 'Refreshing'
+              : 'Prices update in ' + `${countdown}s`}
           </Text>
         </div>
       </Flex>
       <PairInfoCardGroup
         pairs={pairs}
-        isLoading={isLoading}
+        toggleRefresh={toggleRefresh}
         selectedNetwork={selectedNetwork}
       />
     </Flex>

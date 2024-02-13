@@ -6,12 +6,12 @@ import { CurrencyPair } from '@/types/slinky'
 export default function PairInfoCardGroup({
   pairs,
   selectedNetwork,
+  toggleRefresh,
 }: {
   pairs: CurrencyPair[]
   selectedNetwork: string
-  isLoading: boolean
+  toggleRefresh: boolean
 }) {
-  console.log(pairs)
   return (
     <SimpleGrid
       spacing={{ base: 4, md: 6 }}
@@ -25,6 +25,7 @@ export default function PairInfoCardGroup({
       {pairs.map((pair) => (
         <PairInfoCard
           pair={pair}
+          toggleRefresh={toggleRefresh}
           key={pair.Base + pair.Quote}
           selectedNetwork={selectedNetwork}
         />

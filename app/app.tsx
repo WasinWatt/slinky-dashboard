@@ -77,7 +77,7 @@ export default function App() {
           </span>
           <Text className='text-xs font-mono pt-1 text-gray-400 mb-1'>
             {countdown === 0
-              ? 'Refreshing'
+              ? 'Updating'
               : 'Prices update in ' + `${countdown}s`}
           </Text>
         </div>

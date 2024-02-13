@@ -43,6 +43,7 @@ export const CopyButton = ({
         float='right'
         {...buttonProps}
         borderRadius={size === 'xs' ? 6 : 8}
+        color='gray.400'
       >
         {hasIcon && (
           <CustomIcon

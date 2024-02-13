@@ -126,7 +126,7 @@ const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/ora
                         }}
                       />
                       <Box position='absolute' bottom={4} right={4}>
-                        <CopyButton value={item.snippet} />
+                        <CopyButton value={item.snippet} variant='outline' />
                       </Box>
                     </Box>
                   </TabPanel>

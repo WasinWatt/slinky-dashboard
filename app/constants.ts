@@ -4,6 +4,7 @@ type ChainInfoType = {
     explorer: string
     lcd: string
     rpc: string
+    daemon: string
   }
 }
 
@@ -13,12 +14,14 @@ export const chainInfo: ChainInfoType = {
     explorer: 'https://scan.testnet.initia.xyz',
     lcd: 'https://lcd.mahalo-1.initia.xyz',
     rpc: 'https://rpc.mahalo-1.initia.xyz:443',
+    daemon: 'initiad',
   },
   artio: {
     prettyName: 'Berachain (artio)',
     explorer: 'https://artio.beratrail.io',
     lcd: 'https://berachain-testnet-api.polkachu.com',
     rpc: 'https://berachain-testnet-rpc.polkachu.com',
+    daemon: 'berad',
   },
 }
 

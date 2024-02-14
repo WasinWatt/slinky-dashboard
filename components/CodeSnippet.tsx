@@ -46,21 +46,26 @@ const CodeSnippet = ({
   > = {
     query: [
       {
-        name: 'CLI (cURL)',
+        name: 'cURL',
         mode: 'sh',
         snippet: `curl -X GET "${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}"`,
       },
       {
-        name: 'CLI (client)',
+        name: 'CLI',
         mode: 'sh',
-        snippet: `initiad query oracle price ${base} ${quote} --node "${chainInfo[network].rpc}"`,
+        snippet: `${chainInfo[network].daemon} query oracle price ${base} ${quote} --node "${chainInfo[network].rpc}"`,
       },
       {
-        name: 'Axios',
+        name: 'JS (axios)',
         mode: 'javascript',
-        snippet: `const axios = require('axios');\n
-const lcdURL = "${chainInfo[network].lcd}"
-const { data: { price }} = await axios.get("${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}")
+        snippet: `const axios = require('axios')
+
+const querySlinkyPrice = async () => {
+  const lcdURL = '${chainInfo[network].lcd}'
+  const {data: { price }} = await axios.get(
+    '${chainInfo[network].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${base}/${quote}'
+  )
+}
 `,
       },
     ],

@@ -9,19 +9,12 @@ type ChainInfoType = {
 }
 
 export const chainInfo: ChainInfoType = {
-  'mahalo-1': {
-    prettyName: 'Initia (mahalo-1)',
+  'initiation-2': {
+    prettyName: 'Initia (initiation-2)',
     explorer: 'https://scan.testnet.initia.xyz',
-    lcd: 'https://lcd.mahalo-1.initia.xyz',
-    rpc: 'https://rpc.mahalo-1.initia.xyz:443',
+    lcd: 'https://lcd.initiation-2.initia.xyz',
+    rpc: 'https://rpc.initiation-2.initia.xyz:443',
     daemon: 'initiad',
-  },
-  artio: {
-    prettyName: 'Berachain (artio)',
-    explorer: 'https://artio.beratrail.io',
-    lcd: 'https://berachain-testnet-api.polkachu.com',
-    rpc: 'https://berachain-testnet-rpc.polkachu.com',
-    daemon: 'berad',
   },
 }
 

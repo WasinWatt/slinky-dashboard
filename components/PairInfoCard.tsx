@@ -69,7 +69,7 @@ export default function PairInfoCard({
       const {
         data: { price: rawPrice, decimals },
       }: { data: GetPriceResponse } = await axios.get(
-        `${chainInfo[selectedNetwork].lcd}/slinky/oracle/v1/get_price?currency_pair_id=${Base}/${Quote}`
+        `${chainInfo[selectedNetwork].lcd}/connect/oracle/v2/get_price?currency_pair=${Base}/${Quote}`
       )
 
       setPairInfo({

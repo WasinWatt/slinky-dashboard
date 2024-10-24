@@ -40,7 +40,7 @@ export default function App() {
           data: { currency_pairs: rawCurrencyPairs },
         }: {
           data: AllPairsResponse
-        } = await axios.get(`${lcdUrl}/slinky/oracle/v1/get_all_tickers`)
+        } = await axios.get(`${lcdUrl}/connect/oracle/v2/get_all_tickers`)
         setPairs(rawCurrencyPairs)
       } catch (error) {
         console.log(error)
